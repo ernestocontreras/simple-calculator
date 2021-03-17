@@ -4,6 +4,10 @@
   grid-template-columns: repeat(4, 80px);
   grid-gap: 10px;
   justify-content: center;
+
+  background-color: #000000;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .calculator-screen {
@@ -12,14 +16,29 @@
   text-align: right;
   border: none;
   margin-top: 100px;
+
   background-color: transparent;
+  color: inherit;
 }
 
-.calculator button {
+.calculator-button {
   border-radius: 50px;
-  font-size: 2.5em;
+  font-size: 2em;
   width: 1fr;
   height: 1fr;
+
+  border: 0px;
+  background-color: #3a3a3a;
+  color: inherit;
+}
+
+.operator {
+  background-color: #eea13b;
+}
+
+.function {
+  background-color: #b3b3b3;
+  color: #000000;
 }
 
 .calculator .col-2 {
