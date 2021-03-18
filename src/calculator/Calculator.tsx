@@ -1,8 +1,9 @@
 import React, { ReactNode, SyntheticEvent } from 'react';
+import ComposedEvaluator from './evaluators/ComposedEvaluator';
 import './Calculator.css';
 
 function Screen(props: any) {
-  return <input type="text" className="calculator-screen col-4" value="0" readOnly />;
+  return <input type="text" className="calculator-screen col-4" value={props.value} readOnly />;
 }
 
 function Button(props: any) {
@@ -14,43 +15,58 @@ function Button(props: any) {
   }
 
   return (
-    <button type="button" className={className} value="{props.value}" onClick={props.onClick}>
+    <button type="button" className={className} value={props.value} onClick={props.onClick}>
       {props.value}
     </button>
   );
 }
 
 export default class Calculator extends React.Component {
-  private handleClick(event: SyntheticEvent): void {}
+  state = {
+    result: '0',
+  };
+
+  private service: ComposedEvaluator;
+
+  constructor(props: any) {
+    super(props);
+    this.service = new ComposedEvaluator();
+  }
+
+  private handleClick(event: SyntheticEvent<HTMLButtonElement>): void {
+    const value = event.currentTarget.value;
+    const result = this.service.evaluate(value);
+    this.setState({ result: result });
+  }
 
   render(): ReactNode {
     return (
       <div className="calculator">
-        <Screen />
+        <Screen value={this.state.result} />
 
-        <Button value="AC" function onClick={this.handleClick} />
-        <Button value="+/-" function onClick={this.handleClick} />
-        <Button value="&#37;" function onClick={this.handleClick} />
-        <Button value="&divide;" operator onClick={this.handleClick} />
+        <Button value="AC" function onClick={(event) => this.handleClick(event)} />
+        <Button value="+/-" function onClick={(event) => this.handleClick(event)} />
+        <Button value="%" function onClick={(event) => this.handleClick(event)} />
+        <Button value="÷" operator onClick={(event) => this.handleClick(event)} />
 
-        <Button value="7" onClick={this.handleClick} />
-        <Button value="8" onClick={this.handleClick} />
-        <Button value="9" onClick={this.handleClick} />
-        <Button value="&times;" operator onClick={this.handleClick} />
+        <Button value="7" onClick={(event) => this.handleClick(event)} />
+        <Button value="8" onClick={(event) => this.handleClick(event)} />
+        <Button value="9" onClick={(event) => this.handleClick(event)} />
+        <Button value="×" operator onClick={(event) => this.handleClick(event)} />
 
-        <Button value="4" onClick={this.handleClick} />
-        <Button value="5" onClick={this.handleClick} />
-        <Button value="6" onClick={this.handleClick} />
-        <Button value="&minus;" operator onClick={this.handleClick} />
+        <Button value="4" onClick={(event) => this.handleClick(event)} />
+        <Button value="5" onClick={(event) => this.handleClick(event)} />
+        <Button value="6" onClick={(event) => this.handleClick(event)} />
+        <Button value="−" operator onClick={(event) => this.handleClick(event)} />
 
-        <Button value="1" onClick={this.handleClick} />
-        <Button value="2" onClick={this.handleClick} />
-        <Button value="3" onClick={this.handleClick} />
-        <Button value="+" operator onClick={this.handleClick} />
+        <Button value="1" onClick={(event) => this.handleClick(event)} />
+        <Button value="2" onClick={(event) => this.handleClick(event)} />
+        <Button value="3" onClick={(event) => this.handleClick(event)} />
+        <Button value="+" operator onClick={(event) => this.handleClick(event)} />
 
-        <Button value="0" onClick={this.handleClick} className="col-2" />
-        <Button value="." onClick={this.handleClick} />
-        <Button value="=" operator onClick={this.handleClick} />
+        <Button value="0" onClick={(event) => this.handleClick(event)} className="col-2" />
+        <Button value="." onClick={(event) => this.handleClick(event)} />
+        <Button value="=" operator onClick={(event) => this.handleClick(event)} />
       </div>
     );
   }
