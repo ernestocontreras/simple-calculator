@@ -1,5 +1,6 @@
 import React, { ReactNode, SyntheticEvent } from 'react';
 import ComposedEvaluator from './evaluators/ComposedEvaluator';
+import { Functions, Operators } from './evaluators/common';
 import './Calculator.css';
 
 function Screen(props: any) {
@@ -7,8 +8,7 @@ function Screen(props: any) {
 }
 
 function Button(props: any) {
-  const classes = ['calculator-button', props.function ? 'function' : '', props.operator ? 'operator' : ''];
-
+  const classes = ['calculator-button', props.gray ? 'gray' : '', props.orange ? 'orange' : ''];
   let className = classes.join(' ').trim();
   if (props.className) {
     className = className + ` ${props.className}`;
@@ -44,29 +44,29 @@ export default class Calculator extends React.Component {
       <div className="calculator">
         <Screen value={this.state.result} />
 
-        <Button value="AC" function onClick={(event) => this.handleClick(event)} />
-        <Button value="+/-" function onClick={(event) => this.handleClick(event)} />
-        <Button value="%" function onClick={(event) => this.handleClick(event)} />
-        <Button value="÷" operator onClick={(event) => this.handleClick(event)} />
+        <Button value={Functions.AC} gray onClick={(event) => this.handleClick(event)} />
+        <Button value={Functions.NEGATE} gray onClick={(event) => this.handleClick(event)} />
+        <Button value={Functions.PERCENT} gray onClick={(event) => this.handleClick(event)} />
+        <Button value={Operators.DIVISION} orange onClick={(event) => this.handleClick(event)} />
 
         <Button value="7" onClick={(event) => this.handleClick(event)} />
         <Button value="8" onClick={(event) => this.handleClick(event)} />
         <Button value="9" onClick={(event) => this.handleClick(event)} />
-        <Button value="×" operator onClick={(event) => this.handleClick(event)} />
+        <Button value={Operators.TIMES} orange onClick={(event) => this.handleClick(event)} />
 
         <Button value="4" onClick={(event) => this.handleClick(event)} />
         <Button value="5" onClick={(event) => this.handleClick(event)} />
         <Button value="6" onClick={(event) => this.handleClick(event)} />
-        <Button value="−" operator onClick={(event) => this.handleClick(event)} />
+        <Button value={Operators.SUBSTRACTION} orange onClick={(event) => this.handleClick(event)} />
 
         <Button value="1" onClick={(event) => this.handleClick(event)} />
         <Button value="2" onClick={(event) => this.handleClick(event)} />
         <Button value="3" onClick={(event) => this.handleClick(event)} />
-        <Button value="+" operator onClick={(event) => this.handleClick(event)} />
+        <Button value={Operators.ADDITION} orange onClick={(event) => this.handleClick(event)} />
 
         <Button value="0" onClick={(event) => this.handleClick(event)} className="col-2" />
         <Button value="." onClick={(event) => this.handleClick(event)} />
-        <Button value="=" operator onClick={(event) => this.handleClick(event)} />
+        <Button value={Functions.EQUALS} orange onClick={(event) => this.handleClick(event)} />
       </div>
     );
   }

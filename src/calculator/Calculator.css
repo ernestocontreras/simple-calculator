@@ -32,11 +32,11 @@
   color: inherit;
 }
 
-.operator {
+.orange {
   background-color: #eea13b;
 }
 
-.function {
+.gray {
   background-color: #b3b3b3;
   color: #000000;
 }
