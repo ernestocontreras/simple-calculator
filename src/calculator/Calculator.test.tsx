@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import Calculator from './Calculator';
 
-test('renders learn react link', () => {
+test('renders all necessary buttons', () => {
   render(<Calculator />);
-  const text = screen.getByText(/0/i);
-  expect(text).toBeInTheDocument();
+  const buttons = screen.getAllByRole('button');
+  expect(buttons.length).toEqual(19);
 });
