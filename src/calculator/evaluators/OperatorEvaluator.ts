@@ -1,7 +1,6 @@
 import { operate, Operators } from './common';
 
 export default class OperatorEvaluator implements CalculatorInputEvaluator {
-
   canEvaluate(input: string): boolean {
     return Object.values(Operators).some((value) => value === input);
   }
@@ -16,7 +15,6 @@ export default class OperatorEvaluator implements CalculatorInputEvaluator {
 
     return {
       total: state.partial || '0',
-      partial: null,
       operation: input,
     };
   }
