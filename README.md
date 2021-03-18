@@ -1,5 +1,7 @@
 # Simple Calculator
 
+![Calculator Screenshot](docs/images/Screenshot-1.png)
+
 ## 🚀 Getting started
 
 ### Prerequisites
