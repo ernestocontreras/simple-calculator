@@ -1,10 +1,15 @@
 import React, { ReactNode, SyntheticEvent } from 'react';
 import ComposedEvaluator from './evaluators/ComposedEvaluator';
 import { Functions, Operators } from './evaluators/common';
+
 import './Calculator.css';
 
 function Screen(props: any) {
-  return <input type="text" className="calculator-screen col-4" value={props.value} readOnly />;
+  return (
+    <div className="col-4">
+      <div className="calculator-screen">{props.value}</div>
+    </div>
+  );
 }
 
 function Button(props: any) {

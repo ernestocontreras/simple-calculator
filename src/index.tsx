@@ -7,7 +7,9 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Calculator />
+    <div className="centered">
+      <Calculator />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
